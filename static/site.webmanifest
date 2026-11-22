@@ -1,0 +1,11 @@
+{
+  "name": "Lúa Casanova, Abogada",
+  "short_name": "Lúa Casanova",
+  "icons": [
+    {"src": "/static/favicon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/static/favicon-512.png", "sizes": "512x512", "type": "image/png"}
+  ],
+  "background_color": "#faf8f5",
+  "theme_color": "#faf8f5",
+  "display": "standalone"
+}

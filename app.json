@@ -1,0 +1,27 @@
+{
+  "name": "Lúa Casanova — sitio web profesional",
+  "description": "Sitio web profesional de una abogada en Vigo, desarrollado con Flask.",
+  "keywords": ["flask", "python", "legal", "website"],
+  "env": {
+    "SECRET_KEY": {
+      "description": "Clave secreta para proteger sesiones y formularios CSRF.",
+      "generator": "secret"
+    },
+    "SITE_URL": {
+      "description": "URL HTTPS pública de la aplicación, por ejemplo https://tu-app.herokuapp.com.",
+      "required": false
+    },
+    "FORMSPREE_ENDPOINT": {
+      "description": "Endpoint de Formspree para el formulario de contacto.",
+      "required": false
+    },
+    "GOOGLE_MAPS_URL": {
+      "description": "Enlace opcional a la ubicación profesional.",
+      "required": false
+    },
+    "LINKEDIN_URL": {
+      "description": "Enlace opcional al perfil profesional de LinkedIn.",
+      "required": false
+    }
+  }
+}

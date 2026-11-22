@@ -4,6 +4,8 @@ Sitio web corporativo de **Lúa Casanova Gómez**, abogada en Vigo. La aplicaci�
 
 Está desarrollado con Flask y plantillas Jinja, con una interfaz responsive y contenidos en español.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Joey305/lua)
+
 ## Características
 
 - Páginas de inicio, servicios, sobre mí, recomendaciones y contacto.
@@ -46,7 +48,7 @@ pip install -r requirements.txt
 
 ### 3. Configurar las variables de entorno
 
-Crea un archivo `.env` en la raíz del proyecto con los valores necesarios:
+Copia `.env.example` a `.env` y completa los valores necesarios:
 
 ```env
 SECRET_KEY=una-clave-larga-y-aleatoria
@@ -78,7 +80,26 @@ Abre [http://127.0.0.1:5000](http://127.0.0.1:5000) en el navegador.
 
 ## Despliegue
 
-Para producción, utiliza un servidor WSGI como Gunicorn detrás de HTTPS y configura las variables de entorno desde la plataforma de alojamiento. Si se ejecutan varias instancias de la aplicación, configura Flask-Limiter con almacenamiento Redis compartido para que los límites de solicitudes se apliquen de forma coherente.
+### Heroku
+
+El proyecto incluye los archivos necesarios para Heroku:
+
+- `Procfile`: inicia la aplicación con Gunicorn y escucha en el puerto asignado por Heroku.
+- `.python-version`: fija Python 3.13 y permite recibir actualizaciones de seguridad de la misma versión.
+- `app.json`: permite el despliegue con el botón **Deploy to Heroku** y genera `SECRET_KEY` automáticamente.
+
+Después de publicar el repositorio en `https://github.com/Joey305/lua`, puedes usar el botón anterior o crear la aplicación desde la línea de comandos:
+
+```bash
+heroku create nombre-de-tu-app
+heroku config:set SITE_URL=https://nombre-de-tu-app.herokuapp.com
+heroku config:set FORMSPREE_ENDPOINT=https://formspree.io/f/TU_IDENTIFICADOR
+git push heroku main
+```
+
+En el panel de Heroku, comprueba **Settings → Config Vars** y establece `SITE_URL` con la URL HTTPS final. Sin este valor, el sitemap, `robots.txt` y las cabeceras del formulario conservarán la URL local de desarrollo. Configura `FORMSPREE_ENDPOINT` antes de habilitar las consultas desde la web.
+
+Para otros entornos de producción, utiliza Gunicorn detrás de HTTPS y configura las variables de entorno desde la plataforma de alojamiento. Si se ejecutan varias instancias de la aplicación, configura Flask-Limiter con almacenamiento Redis compartido para que los límites de solicitudes se apliquen de forma coherente.
 
 Antes de publicar, revisa y completa los datos pendientes de las páginas legales, la información profesional, los enlaces externos y los contenidos de contacto.
 
@@ -87,6 +108,9 @@ Antes de publicar, revisa y completa los datos pendientes de las páginas legale
 ```text
 .
 ├── app.py              # Aplicación Flask y rutas
+├── Procfile            # Comando de inicio para Heroku
+├── app.json            # Manifiesto para Deploy to Heroku
+├── .python-version     # Versión de Python para Heroku
 ├── requirements.txt    # Dependencias de Python
 ├── static/             # Estilos, JavaScript e iconos
 └── templates/          # Plantillas HTML Jinja
