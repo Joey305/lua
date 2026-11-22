@@ -5,4 +5,8 @@ if (mapCanvas && window.L) {
   map.setView(office, 16);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
   L.circleMarker(office, { radius: 4, color: '#16202c', weight: 1, fillColor: '#c89b7b', fillOpacity: 1, interactive: false }).addTo(map);
+  const syncMapSize = () => map.invalidateSize({ animate: false, pan: false });
+  requestAnimationFrame(() => requestAnimationFrame(syncMapSize));
+  window.addEventListener('load', syncMapSize, { once: true });
+  new ResizeObserver(syncMapSize).observe(mapCanvas);
 }

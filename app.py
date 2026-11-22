@@ -12,6 +12,7 @@ from wtforms.validators import DataRequired, Email, Length
 
 
 class ContactForm(FlaskForm):
+    website = StringField("No rellenar este campo")
     name = StringField("Nombre y apellidos", validators=[DataRequired(message="Indica tu nombre."), Length(max=100)])
     email = EmailField("Correo electrónico", validators=[DataRequired(message="Indica tu correo."), Email(message="Revisa el correo electrónico."), Length(max=120)])
     phone = StringField("Teléfono", validators=[DataRequired(message="Indica un teléfono de contacto."), Length(max=30)])
@@ -59,6 +60,11 @@ def create_app():
         form = ContactForm()
         submitted = False
         if form.validate_on_submit():
+            if form.website.data:
+                # Honeypot: ordinary visitors never see this field; bots often populate it.
+                submitted = True
+                form = ContactForm(formdata=None)
+                return page("contact.html", "Contacto | Lúa Casanova, Abogada", "Solicita una consulta con Lúa Casanova, abogada en Vigo.", form=form, submitted=submitted)
             endpoint = app.config["FORMSPREE_ENDPOINT"]
             if not endpoint:
                 form.message.errors.append("El servicio de formularios no está configurado todavía. Llámenos al 657 528 018.")
