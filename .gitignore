@@ -16,5 +16,8 @@ venv/
 .coverage
 htmlcov/
 
+# Generated local artifacts and render previews
+tmp/
+
 # OS files
 .DS_Store
