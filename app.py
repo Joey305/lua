@@ -29,7 +29,7 @@ def create_app():
         SITE_URL=os.getenv("SITE_URL", "http://localhost:5000").rstrip("/"),
         CONTACT_RECIPIENT=os.getenv("CONTACT_RECIPIENT", ""),  # TODO: configure recipient email
         FORMSPREE_ENDPOINT=os.getenv("FORMSPREE_ENDPOINT", ""),  # Formspree form endpoint
-        MAPS_URL=os.getenv("GOOGLE_MAPS_URL", ""),  # TODO: configure Google Maps URL
+        MAPS_URL=os.getenv("GOOGLE_MAPS_URL", "https://maps.app.goo.gl/XnjUQV8C9TgmfjQ48"),
         LINKEDIN_URL=os.getenv("LINKEDIN_URL", ""),  # TODO: configure verified LinkedIn URL
     )
     # Use shared Redis storage for this limiter when the app runs on multiple instances.
