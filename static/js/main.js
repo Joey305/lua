@@ -33,7 +33,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'Intersect
   const sections = document.querySelectorAll('main > section:not(.hero)');
   sections.forEach((section) => {
     section.classList.add('reveal');
-    section.querySelectorAll('.eyebrow, h1, h2, .lede, .actions, .area-grid article, .process li, .service-detail article, .contact-info, .form-card').forEach((item, index) => {
+    section.querySelectorAll('.eyebrow, h1, h2, .lede, .actions, .area-grid article, .notes-grid article, .process li, .service-detail article, .contact-info, .form-card').forEach((item, index) => {
       item.classList.add('reveal-item');
       item.style.setProperty('--reveal-index', index);
     });

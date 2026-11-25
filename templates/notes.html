@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-hero compact notes-hero">
+  <p class="eyebrow">NOTAS JURÍDICAS</p>
+  <h1>Entender su situación<br><em>también es avanzar.</em></h1>
+  <p class="lede">Una colección de guías breves y prácticas para resolver dudas habituales antes de dar el siguiente paso.</p>
+</section>
+<section class="notes-page">
+  <div class="notes-intro-block"><p>Estamos preparando las primeras notas. Cada una se publicará tras una revisión profesional, con información clara y útil para situaciones reales.</p><span class="appointment-note">Nuevas notas, próximamente</span></div>
+  <div class="notes-grid">{% for note in notes %}<article class="note-card"><p class="note-meta">{{ note.area }} <span>·</span> EN PREPARACIÓN</p><span class="note-number">{{ note.number }}</span><h2><a href="{{ url_for('note_detail', slug=note.slug) }}">{{ note.title }}</a></h2><p>{{ note.summary }}</p><a href="{{ url_for('note_detail', slug=note.slug) }}" class="text-link">Ver avance <span>↗</span></a></article>{% endfor %}</div>
+</section>
+<section class="callout"><p class="eyebrow">¿TIENE UNA DUDA CONCRETA?</p><h2>Hablemos de su caso.</h2><p>Estas notas ofrecen orientación general. Para estudiar una situación concreta, puede solicitar una consulta.</p><a class="button" href="{{ url_for('contact') }}">Solicitar una consulta</a></section>
+{% endblock %}

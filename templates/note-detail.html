@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="page-hero compact note-detail-hero">
+  <p class="eyebrow">{{ note.area }} · NOTA EN PREPARACIÓN</p>
+  <h1>{{ note.title }}</h1>
+  <p class="lede">{{ note.summary }}</p>
+</section>
+<section class="note-coming-soon">
+  <div><p class="eyebrow">PRÓXIMAMENTE</p><h2>Una guía clara, revisada y útil.</h2></div>
+  <div><p>Estamos preparando esta nota para publicarla tras su revisión profesional. Incluirá la información práctica que conviene conocer antes de valorar los próximos pasos.</p><p class="form-note">El contenido de esta sección tiene carácter informativo general y no sustituye el asesoramiento jurídico individualizado.</p><a class="text-link" href="{{ url_for('notes') }}">Volver a las notas <span>↗</span></a></div>
+</section>
+<section class="callout"><p class="eyebrow">SU CASO ES ÚNICO</p><h2>¿Necesita orientación ahora?</h2><p>Una consulta permite estudiar su situación concreta con la atención que merece.</p><a class="button" href="{{ url_for('contact') }}">Solicitar una consulta</a></section>
+{% endblock %}

@@ -3,7 +3,7 @@ from datetime import datetime
 
 from dotenv import load_dotenv
 import requests
-from flask import Flask, render_template, url_for
+from flask import Flask, abort, render_template, url_for
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 from flask_wtf import FlaskForm
@@ -19,6 +19,34 @@ class ContactForm(FlaskForm):
     subject = StringField("¿En qué podemos ayudarte?", validators=[DataRequired(message="Resume el asunto."), Length(max=150)])
     message = TextAreaField("Cuéntanos brevemente tu caso", validators=[DataRequired(message="Escribe un breve mensaje."), Length(min=20, max=3000, message="El mensaje debe tener entre 20 y 3000 caracteres.")])
     privacy = BooleanField("He leído y acepto la política de privacidad.", validators=[DataRequired(message="Debes aceptar la política de privacidad.")])
+
+
+# These are deliberately presented as forthcoming until Lúa has reviewed and
+# approved the legal content. Keeping the editorial plan here makes publishing
+# a reviewed note a small, repeatable change rather than a new feature build.
+NOTES = (
+    {
+        "slug": "que-hacer-ante-un-despido",
+        "area": "DERECHO LABORAL",
+        "number": "01",
+        "title": "Qué hacer ante un despido",
+        "summary": "Una guía clara sobre los primeros pasos, la documentación y los plazos que conviene revisar.",
+    },
+    {
+        "slug": "primera-consulta-juridica",
+        "area": "ORIENTACIÓN JURÍDICA",
+        "number": "02",
+        "title": "Qué llevar a una primera consulta",
+        "summary": "Cómo llegar a la primera conversación con la información necesaria para aprovecharla mejor.",
+    },
+    {
+        "slug": "reclamacion-de-cantidad",
+        "area": "DERECHO CIVIL Y LABORAL",
+        "number": "03",
+        "title": "Cómo funciona una reclamación de cantidad",
+        "summary": "Las preguntas iniciales que ayudan a entender si existe una vía para reclamar una deuda o cantidad pendiente.",
+    },
+)
 
 
 def create_app():
@@ -53,6 +81,17 @@ def create_app():
     @app.get("/sobre-mi")
     def about():
         return page("about.html", "Sobre mí | Lúa Casanova, Abogada", "Conoce el enfoque cercano, honesto y riguroso de Lúa Casanova, abogada en Vigo.")
+
+    @app.get("/notas")
+    def notes():
+        return page("notes.html", "Notas jurídicas | Lúa Casanova, Abogada", "Guías jurídicas claras y prácticas de Lúa Casanova, abogada en Vigo.", notes=NOTES, noindex=True)
+
+    @app.get("/notas/<slug>")
+    def note_detail(slug):
+        note = next((item for item in NOTES if item["slug"] == slug), None)
+        if note is None:
+            abort(404)
+        return page("note-detail.html", f"{note['title']} | Lúa Casanova, Abogada", note["summary"], note=note, noindex=True)
 
     @app.route("/contacto", methods=["GET", "POST"])
     @limiter.limit("5 per hour", methods=["POST"])
@@ -102,7 +141,7 @@ def create_app():
 
     @app.get("/recomendaciones")
     def recommendations():
-        return page("recommendations.html", "Recomendaciones | Lúa Casanova", "Recomendaciones de clientes de Lúa Casanova, abogada en Vigo.")
+        return page("recommendations.html", "Recomendaciones | Lúa Casanova", "Recomendaciones de clientes de Lúa Casanova, abogada en Vigo.", noindex=True)
 
     @app.get("/aviso-legal")
     def legal_notice():
@@ -122,7 +161,7 @@ def create_app():
 
     @app.get("/sitemap.xml")
     def sitemap():
-        endpoints = ["home", "services", "about", "contact", "recommendations", "legal_notice", "privacy", "cookies"]
+        endpoints = ["home", "services", "about", "contact", "legal_notice", "privacy", "cookies"]
         urls = [app.config["SITE_URL"] + url_for(endpoint) for endpoint in endpoints]
         return render_template("sitemap.xml", urls=urls), 200, {"Content-Type": "application/xml"}
 
