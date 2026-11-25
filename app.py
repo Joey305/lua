@@ -31,20 +31,23 @@ NOTES = (
         "number": "01",
         "title": "Qué hacer ante un despido",
         "summary": "Una guía clara sobre los primeros pasos, la documentación y los plazos que conviene revisar.",
+        "illustration": "notes-despido.svg",
     },
     {
         "slug": "primera-consulta-juridica",
         "area": "ORIENTACIÓN JURÍDICA",
         "number": "02",
-        "title": "Qué llevar a una primera consulta",
+        "title": "Qué documentos llevar a una primera consulta laboral",
         "summary": "Cómo llegar a la primera conversación con la información necesaria para aprovecharla mejor.",
+        "illustration": "notes-consulta.svg",
     },
     {
         "slug": "reclamacion-de-cantidad",
         "area": "DERECHO CIVIL Y LABORAL",
         "number": "03",
-        "title": "Cómo funciona una reclamación de cantidad",
+        "title": "Reclamación de cantidad: cuándo puede reclamar",
         "summary": "Las preguntas iniciales que ayudan a entender si existe una vía para reclamar una deuda o cantidad pendiente.",
+        "illustration": "notes-reclamacion.svg",
     },
 )
 
@@ -72,7 +75,7 @@ def create_app():
 
     @app.get("/")
     def home():
-        return page("home.html", "Abogada en Vigo | Lúa Casanova", "Abogada en Vigo especializada en derecho civil y laboral. Asesoramiento cercano, claro y riguroso en toda Galicia.")
+        return page("home.html", "Abogada en Vigo | Lúa Casanova", "Abogada en Vigo especializada en derecho civil y laboral. Asesoramiento cercano, claro y riguroso en toda Galicia.", notes=NOTES)
 
     @app.get("/servicios")
     def services():

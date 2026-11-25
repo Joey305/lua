@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" fill="none" aria-hidden="true">
+  <rect width="640" height="400" fill="#F2E8DF"/>
+  <path d="M94 303H546" stroke="#16202C" stroke-width="2"/>
+  <rect x="169" y="80" width="196" height="224" rx="2" fill="#FAF8F5" stroke="#16202C" stroke-width="2"/>
+  <path d="M205 129H330M205 162H330M205 195H292" stroke="#C89B7B" stroke-width="8"/>
+  <path d="M412 112V232" stroke="#16202C" stroke-width="2"/>
+  <path d="M379 145H445M379 190H445" stroke="#16202C" stroke-width="2"/>
+  <circle cx="412" cy="278" r="43" fill="#C89B7B"/>
+  <path d="M392 278L406 292L435 260" stroke="#16202C" stroke-width="4"/>
+  <text x="92" y="62" fill="#16202C" font-family="Arial, sans-serif" font-size="18" letter-spacing="4">PRIMEROS PASOS</text>
+</svg>

@@ -1,9 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <section class="page-hero compact note-detail-hero">
-  <p class="eyebrow">{{ note.area }} · NOTA EN PREPARACIÓN</p>
-  <h1>{{ note.title }}</h1>
-  <p class="lede">{{ note.summary }}</p>
+  <div class="note-detail-heading"><div><p class="eyebrow">{{ note.area }} · NOTA EN PREPARACIÓN</p><h1>{{ note.title }}</h1><p class="lede">{{ note.summary }}</p></div><img class="note-detail-illustration" src="{{ url_for('static', filename='images/' + note.illustration) }}" alt="" aria-hidden="true"></div>
 </section>
 <section class="note-coming-soon">
   <div><p class="eyebrow">PRÓXIMAMENTE</p><h2>Una guía clara, revisada y útil.</h2></div>

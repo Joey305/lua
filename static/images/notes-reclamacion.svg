@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" fill="none" aria-hidden="true">
+  <rect width="640" height="400" fill="#F2E8DF"/>
+  <path d="M104 299H536" stroke="#16202C" stroke-width="2"/>
+  <rect x="144" y="146" width="120" height="153" fill="#FAF8F5" stroke="#16202C" stroke-width="2"/>
+  <rect x="376" y="102" width="120" height="197" fill="#FAF8F5" stroke="#16202C" stroke-width="2"/>
+  <path d="M169 180H239M169 209H227M169 238H214M401 137H471M401 166H459M401 195H451" stroke="#C89B7B" stroke-width="7"/>
+  <path d="M291 210H346" stroke="#16202C" stroke-width="3"/>
+  <path d="M328 193L346 210L328 227" stroke="#16202C" stroke-width="3"/>
+  <circle cx="320" cy="102" r="34" fill="#C89B7B"/>
+  <path d="M307 102H333M320 89V115" stroke="#16202C" stroke-width="3"/>
+  <text x="144" y="62" fill="#16202C" font-family="Arial, sans-serif" font-size="18" letter-spacing="4">CANTIDADES PENDIENTES</text>
+</svg>
